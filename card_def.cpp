@@ -1,11 +1,14 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+#include<random>
+#include<chrono>
 #include"card.h"
 using namespace std;
 bool card::account_conf()
 {
-    int c,ch;
+    int c;
+    int ch;
     cout<<"\t\tHave you already given your account details(yes=1/no=0)?";
     cin>>c;
     if(c==1)
@@ -48,11 +51,15 @@ void card::set_account()
 }
 void card::generate_otp()
 {
-    int otp,randno,ch=1;
+    int otp;
+    int randno;
+    int ch=1;
     while(ch!=0)
     {
-        srand(time(0));
-        randno=rand()%1000000;
+        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+        default_random_engine generator;
+        generator.seed(seed);
+        randno=generator()%1000000;
         cout<<"\t\tOTP is "<<randno<<" for Rs."<<total<<". DO not share OTP for security reasons."<<endl;
         cout<<"\t\tPlease enter the correct 6-digit OTP to verify:";
         cin>>otp;

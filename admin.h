@@ -2,7 +2,7 @@
 class admin : public user
 {
 public:
-   int login();
+   int login() override;
 
 };
 

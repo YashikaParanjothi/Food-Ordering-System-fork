@@ -6,7 +6,8 @@ using namespace std;
 void payment::payment_method()
 {
     ptr2.total=total;
-    int n=1,ch;
+    int n=1;
+    int ch;
     while(n!=0)
     {   cout<<"\t\tPAYMENT MODE"<<endl;
         cout<<"\t\t1.CASH ON DELIVERY"<<endl;

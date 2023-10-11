@@ -1,12 +1,13 @@
 #include"user.h"
 #include"orders.h"
 #include"card.h"
+#include<string.h>
 
 class customer : public user
 {
-    char address[40];
+    string address;
     long long int phone;
-    char email[20];
+    string email;
 
 public:
     orders obj;

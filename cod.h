@@ -4,9 +4,9 @@
 
 class cod
 {
-        char address1[30];
-        char landmark[20];
-        char save_as[20];
+        string address1;
+        string landmark;
+        string save_as;
     public:
         cod();
         bool address_conf();

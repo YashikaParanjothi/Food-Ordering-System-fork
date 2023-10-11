@@ -1,10 +1,10 @@
 #include"bill.h"
 #ifndef orders_h
 #define orders_h
-
+#include<string.h>
 struct order
 {
-    char name[30];
+    string name;
     float price;
     int no;
 };

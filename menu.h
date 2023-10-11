@@ -1,7 +1,8 @@
+#include<string.h>
 class menu
 {
 public:
-    char name[50];
+    string name;
     float price;
     int stock;
     void getdata();

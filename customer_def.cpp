@@ -37,13 +37,10 @@ void customer::display()
 }
 int customer::login()
 {
-    //char pass[20];
     cout<<"\t\tEnter User_Id : ";
     cin>>user_id;
     cout<<"\t\tEnter Password : ";
     cin>>password;
-    //password_hiding(pass);
-    //strcpy(password,pass);
     customer c;
     int flag=0;
     ifstream f("Customer.dat",ios::in|ios::binary);

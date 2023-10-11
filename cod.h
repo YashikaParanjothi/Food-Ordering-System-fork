@@ -1,6 +1,6 @@
 #ifndef cod_h
 #define cod_h
-
+#include<string.h>
 
 class cod
 {

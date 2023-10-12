@@ -11,8 +11,10 @@ bill::bill()
 }
 void bill::generate_billID()
 {
-    srand(time(0));
-    billID=rand()%10000000;
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine generator;
+    generator.seed(seed);
+    billID=generator()%10000000;
 }
 void bill::total_cal()
 {

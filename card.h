@@ -1,11 +1,12 @@
 #ifndef card_h
 #define card_h
+#include<string.h>
 class card
 {
 
         long long int card_no;
-        char name[30];
-        char expiry_date[5];
+        string name;
+        string expiry_date;
         int cvv;
     public:
          float total;

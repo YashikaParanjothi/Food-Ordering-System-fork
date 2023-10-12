@@ -3,12 +3,7 @@
 #include<cstdlib>
 #include"bill.h"
 using namespace std;
-bill::bill()
-{
-    delivery_fee=19;
-    tax=14.92;
-    coupon_amt=0;
-}
+bill::bill(): delivery_fee(19),tax(14.92),coupon_amt(0) {}
 void bill::generate_billID()
 {
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();

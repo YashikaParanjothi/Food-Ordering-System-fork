@@ -66,6 +66,58 @@ void loginUser(user *U, char flag)
   }
 }
 
+void placeOrder(customer C) 
+{
+        char ex='y';
+        menu M;
+        int x=0,c;
+        while(ex=='y')
+        {
+        cout<<"\n\n\t\tMake your order...\n\t\t";
+        cout<<"\n\t\t|Sl.No|\t|             Name             |\t|   Price   |\n";
+        int i=1;
+        cout<<endl;
+        ifstream f("Menu.dat",ios::in|ios::binary);
+        while(f.read((char*)&M,sizeof(M)))
+        {
+            cout<<"\t\t|"<<i<<" |\t";
+            M.display();
+            i++;
+        }
+        f.close();
+        cout<<"\n\t\tSelect the food item that you want to order...\n\t\t=> ";
+        cin>>c;
+        i=1;
+        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+        default_random_engine generator;
+        generator.seed(seed);
+
+       C.obj.b.p.order_id=C.obj.b.order_id=C.obj.order_id=generator()%1000000;
+        ifstream f3("Menu.dat",ios::in|ios::binary);
+        while(f3.read((char*)&M,sizeof(M)))
+        {
+            if(i==c)
+            {
+                strcpy(C.obj.ord[x].name,M.name);
+                C.obj.ord[x].price=M.price;
+                cout<<"\t\tEnter the quantity : ";
+                cin>>quant;
+                C.obj.ord[x].no=quant;
+                x++;
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        f3.close();
+        cout<<"\n\t\tDo you want to order more(y/n)? ";
+        cin>>ex;
+        system("cls");
+        }
+}
+
 int main()
 {
     int flag=0,ret,choice,c,quant;
@@ -185,53 +237,7 @@ int main()
         cout<<"\t\t";
         system("pause");
         system("cls");
-        char ex='y';
-        int x=0;
-        while(ex=='y')
-        {
-        cout<<"\n\n\t\tMake your order...\n\t\t";
-        cout<<"\n\t\t|Sl.No|\t|             Name             |\t|   Price   |\n";
-        int i=1;
-        cout<<endl;
-        ifstream f("Menu.dat",ios::in|ios::binary);
-        while(f.read((char*)&M,sizeof(M)))
-        {
-            cout<<"\t\t|"<<i<<" |\t";
-            M.display();
-            i++;
-        }
-        f.close();
-        cout<<"\n\t\tSelect the food item that you want to order...\n\t\t=> ";
-        cin>>c;
-        i=1;
-        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-        default_random_engine generator;
-        generator.seed(seed);
-
-       C.obj.b.p.order_id=C.obj.b.order_id=C.obj.order_id=generator()%1000000;
-        ifstream f3("Menu.dat",ios::in|ios::binary);
-        while(f3.read((char*)&M,sizeof(M)))
-        {
-            if(i==c)
-            {
-                strcpy(C.obj.ord[x].name,M.name);
-                C.obj.ord[x].price=M.price;
-                cout<<"\t\tEnter the quantity : ";
-                cin>>quant;
-                C.obj.ord[x].no=quant;
-                x++;
-                break;
-            }
-            else
-            {
-                i++;
-            }
-        }
-        f3.close();
-        cout<<"\n\t\tDo you want to order more(y/n)? ";
-        cin>>ex;
-        system("cls");
-        }
+        placeOrder(C);
         C.obj.calc_amt();
         C.obj.b.total_cal();
         C.obj.b.generate_billID();

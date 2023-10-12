@@ -4,6 +4,8 @@
 #include<conio.h>
 #include<ctime>
 #include<cstdlib>
+#include<random>
+#include<chrono>
 #include"user.h"
 #include"admin.h"
 #include"customer.h"
@@ -15,6 +17,54 @@
 #include"cod.h"
 
 using namespace std;
+void signInUser(user *U, char flag) 
+{
+    if(char == 'a')
+    {
+        U.getdata();
+        ofstream f("Admin.dat",ios::app|ios::binary);
+        f.write((char*)&U,sizeof(U));
+        f.close();
+    }
+    else if(char == 'c')
+    {
+        U.getdetails();
+        ofstream fp("Customer.dat",ios::app|ios::binary);
+        fp.write((char*)&U,sizeof(U));
+        fp.close();
+    }
+}
+void loginUser(user *U, char flag)
+{
+    int f = 0
+    int c;
+    cout<<"\n\t\t[1]New User\n\t\t[2]Existing User\n\t\t=> ";
+    cin>>c;
+    system("cls");
+    if(c==1)
+    {
+        signInUser(U,flag);
+        c=2;
+    }
+    system("cls");
+    if(c==2)
+    {
+    while(f==0)
+    {
+         ret=U.login();
+         if(ret==1)
+         {
+             cout<<"\n\t\tYou are Logged In...\n";
+             f=1;
+         }
+         else
+         {
+             cout<<"\n\t\tIncorrect User_Id or Password...\n\t\tRe-Enter...\n";
+             f=0;
+         }
+    }
+  }
+}
 
 int main()
 {
@@ -26,35 +76,7 @@ int main()
     cin>>choice;
     if(choice==1)
     {
-         cout<<"\n\t\t[1]New User\n\t\t[2]Existing User\n\t\t=> ";
-         cin>>c;
-         system("cls");
-         if(c==1)
-         {
-             A.getdata();
-             ofstream f("Admin.dat",ios::app|ios::binary);
-             f.write((char*)&A,sizeof(A));
-             f.close();
-             c=2;
-         }
-         system("cls");
-         if(c==2)
-         {
-             while(flag==0)
-             {
-                 ret=A.login();
-                 if(ret==1)
-                 {
-                     cout<<"\n\t\tYou are Logged In...\n";
-                     flag=1;
-                 }
-                 else
-                 {
-                     cout<<"\n\t\tIncorrect User_Id or Password...\n\t\tRe-Enter...\n";
-                     flag=0;
-                 }
-             }
-         }
+         loginUser(A,'a');
          cout<<"\t\t";
          system("pause");
          system("cls");
@@ -159,34 +181,7 @@ int main()
     }
     else if(choice==2)
     {
-        flag=0;
-        cout<<"\n\t\t[1]New User\n\t\t[2]Existing User\n\t\t=> ";
-        cin>>c;
-        if(c==1)
-        {
-            C.getdetails();
-            ofstream fp("Customer.dat",ios::app|ios::binary);
-            fp.write((char*)&C,sizeof(C));
-            fp.close();
-            c=2;
-        }
-        if(c==2)
-        {
-            while(flag==0)
-             {
-                 ret=C.login();
-                 if(ret==1)
-                 {
-                     cout<<"\n\t\tYou are Logged In...\n";
-                     flag=1;
-                 }
-                 else
-                 {
-                     cout<<"\n\t\tIncorrect User_Id or Password...\n\t\tRe-Enter...\n";
-                     flag=0;
-                 }
-             }
-        }
+        loginUser(C,'c');
         cout<<"\t\t";
         system("pause");
         system("cls");

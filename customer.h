@@ -14,6 +14,6 @@ public:
     card cd;
     void getdetails();
     void display();
-    int login();
+    int login() override;
 };
 

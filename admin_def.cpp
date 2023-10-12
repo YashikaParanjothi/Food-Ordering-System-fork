@@ -5,13 +5,10 @@
 using namespace std;
 int admin::login()
 {
-    char pass[20];
     cout<<"\t\tEnter User_Id : ";
     cin>>user_id;
     cout<<"\t\tEnter Password : ";
     cin>>password;
-    //password_hiding(pass);
-    //strcpy(password,pass);
     admin a;
     int flag=0;
     ifstream f("Admin.dat",ios::in|ios::binary);

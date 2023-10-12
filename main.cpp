@@ -83,7 +83,7 @@ int main()
                           break;
                 case 2: {
                         opt='y';
-                        char p[20];
+                        string p;
                         ifstream f1("Menu.dat",ios::in|ios::binary);
                         ofstream f2("New.dat",ios::app|ios::binary);
                         while(opt=='y')
@@ -109,7 +109,7 @@ int main()
                         break;
                 case 3: {
                         opt='y';
-                        char p[20];
+                        string p;
                         fstream f1("Menu.dat",ios::in|ios::out|ios::binary);
                         while(opt=='y')
                         {
@@ -165,7 +165,6 @@ int main()
         if(c==1)
         {
             C.getdetails();
-            //C.display();
             ofstream fp("Customer.dat",ios::app|ios::binary);
             fp.write((char*)&C,sizeof(C));
             fp.close();
@@ -192,7 +191,6 @@ int main()
         system("pause");
         system("cls");
         char ex='y';
-        //from this should be repeated. have a while loop.
         int x=0;
         while(ex=='y')
         {
@@ -211,9 +209,11 @@ int main()
         cout<<"\n\t\tSelect the food item that you want to order...\n\t\t=> ";
         cin>>c;
         i=1;
-        srand(time(0));
+        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+        default_random_engine generator;
+        generator.seed(seed);
 
-       C.obj.b.p.order_id=C.obj.b.order_id=C.obj.order_id=rand()%1000000;
+       C.obj.b.p.order_id=C.obj.b.order_id=C.obj.order_id=generator()%1000000;
         ifstream f3("Menu.dat",ios::in|ios::binary);
         while(f3.read((char*)&M,sizeof(M)))
         {
@@ -245,7 +245,6 @@ int main()
         system("cls");
         C.obj.b.display_bill();
         C.obj.b.p.payment_method();
-        //Customer works to be done here(order food).
     }
 }
 

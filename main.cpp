@@ -71,7 +71,7 @@ void placeOrder(customer C)
         char ex='y';
         menu M;
         int x=0,c;
-        while(ex=='y')
+        while(ex=='y') //to place orders
         {
         cout<<"\n\n\t\tMake your order...\n\t\t";
         cout<<"\n\t\t|Sl.No|\t|             Name             |\t|   Price   |\n";
